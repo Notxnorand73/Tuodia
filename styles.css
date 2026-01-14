@@ -1,0 +1,122 @@
+body {
+    background: #2c1e14; /* Dark room background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    perspective: 1500px;
+    margin: 0;
+}
+
+/* The Lectern Surface */
+.lectern {
+    background: #5d3a1a;
+    padding: 40px;
+    border: 10px solid #3e2610;
+    box-shadow: 0 50px 100px rgba(0,0,0,0.8);
+    transform: rotateX(25deg);
+    border-radius: 5px;
+    position: relative; 
+    z-index: 1;
+}
+
+/* The Flap Design */
+.flap {
+    position: absolute;
+    top: 20px;            /* Starting position (mostly hidden) */
+    right: 50px;
+    width: 300px;
+    height: 400px;
+    background: #e0d5b8;
+    box-shadow: -2px 2px 10px rgba(0,0,0,0.3);
+    z-index: -1;          /* Keeps it behind the book */
+    padding: 15px;
+    box-sizing: border-box;
+    transition: transform 0.4s ease-in-out;
+    cursor: pointer;
+    
+    /* Aesthetics for the scrap of paper */
+    font-family: 'Courier New', monospace;
+    font-size: 1.4rem;
+    color: #271d0a;
+    border-left: 1px solid rgba(0,0,0,0.1);
+}
+
+/* The Revealed State */
+.flap:hover {
+    transform: translateY(-250px) rotate(5deg); /* Slides up and tilts slightly */
+}
+
+/* Subtle "torn paper" edge effect */
+.flap::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    /* This creates a jagged "torn" paper look */
+    background-image: linear-gradient(135deg, #e0d5b8 25%, transparent 25%), 
+                      linear-gradient(225deg, #e0d5b8 25%, transparent 25%);
+    background-position: 0 0;
+    background-size: 20px 20px;
+    background-repeat: repeat-x;
+}
+
+/* The Book Container */
+.book {
+    width: 700px;
+    height: 450px;
+    background: #f4ecd8;
+    display: flex;
+    box-shadow: 5px 5px 20px rgba(0,0,0,0.5);
+    position: relative;
+    border-radius: 2px 5px 5px 2px;
+}
+
+/* The Center Spine Shadow */
+.book::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    width: 30px;
+    height: 100%;
+    transform: translateX(-50%);
+    background: linear-gradient(90deg, 
+        rgba(0,0,0,0.1) 0%, 
+        rgba(0,0,0,0.3) 50%, 
+        rgba(0,0,0,0.1) 100%);
+    z-index: 2;
+}
+
+/* Page Layout */
+.page {
+    flex: 1;
+    padding: 40px;
+    box-sizing: border-box;
+    font-family: 'Georgia', serif;
+    overflow: hidden;
+}
+
+h1 {
+    font-size: 1.8rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #332b22;
+    border-bottom: 1px solid #d3c9b1;
+    padding-bottom: 10px;
+}
+
+.cipher-text {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #4a4138;
+    text-align: justify;
+    word-break: break-all;
+}
+
+/* Left page styling for Wingdings/Symbols */
+.left-page {
+    border-right: 1px solid rgba(0,0,0,0.1);
+}
